@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Edit Article{% endblock %}
+{% load static %}
+{% block main %}
+
+
+<div class="card text-center">
+    <div class="card-header">
+        <h3>😝Login Now😝</h3>
+    </div>
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="exampleInputEmail1">Username</label>
+              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" placeholder='enter your username here ..'>
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder='enter your password here ..'>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-outline-dark">Login</button>
+            <br>
+            <br>
+
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                  {{message}}
+                </div>
+                {% endfor %}
+            {% endif %}
+
+
+            <br>
+            Did you forget your password ? You could reset it <a href="">Here</a><br>
+            Don't you Have an account ? Register <a href="{% url 'register:create_account_page' %}">Here</a>  
+          </form>
+
+    </div>
+  </div>
+{% endblock %}

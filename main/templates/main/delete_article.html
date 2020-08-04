@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Delete Article{% endblock %}
+{% load static %}
+{% block main %}
+
+
+<div class="card text-center">
+    <div class="card-header">
+      Delete Article
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Are you sure 😢</h5>
+      <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h4>Are you sure that you want to delete "{{article.title}}" 😭 .</h4>
+        <a href="{% url 'main:articles' %}" class="btn btn-warning">Cancel</a>
+        <button type="submit" class="btn btn-danger">Yes, I'm sure</button>
+    </form>
+
+    </div>
+  </div>
+{% endblock %}

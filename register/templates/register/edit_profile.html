@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Edit Profile{% endblock %}
+{% load static %}
+{% block main %}
+<style>
+.emp-profile{
+    padding: 3%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+    border-radius: 0.5rem;
+    background: #fff;
+}
+</style>
+
+<div class="container emp-profile">
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.first_name.label}}
+    {{form.first_name}}
+    <br>
+    {{form.last_name.label}}
+    {{form.last_name}}
+    <br>
+    {{form.email.label}}
+    {{form.email}}
+    <br>
+    {{form.phone.label}}
+    {{form.phone}}
+    <br>
+    {{form.city.label}}
+    {{form.city}}
+    <br>
+    {{form.bio.label}}
+    {{form.bio}}
+    <br>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+        </div>
+        <div class="custom-file">
+          {{form.image}}
+          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+        </div>
+      </div>
+    <br>
+    {{form.profession.label}}
+    {{form.profession}}
+    <br>
+    {{form.skills.label}}
+    {{form.skills}}
+    <br>
+    <a href="#" class="btn btn-outline-dark">Add Some Skills</a><br><br>
+    <button type="submit" class="btn btn-primary" >Edit Profile</button>
+</form>
+
+</div> 
+
+{% endblock %}

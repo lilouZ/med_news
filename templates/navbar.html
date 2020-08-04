@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/" style="font-family: 'Krona One', sans-serif;font-size: 25px;">Med News</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">All Articles <span class="sr-only">(current)</span></a>
+        </li>
+        {% if request.user.is_authenticated %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'main:articles' %}">My Articles</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'register:profile' %}" class="btn btn-outline-dark" style="margin-right: 10px;">{{request.user|title}}</a>
+    <a href="{% url 'register:logout_page' %}" class="btn btn-outline-dark">Logout</a>
+    {% else %}
+    <a href="{% url 'register:membership' %}" class="btn btn-outline-dark">Membership</a>
+    {% endif %}
+  </nav>

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}Articles{% endblock %}
+{% load static %}
+{% block main %}
+
+<style>
+  .emp-profile{
+      padding: 3%;
+      margin-top: 3%;
+      margin-bottom: 3%;
+      border-radius: 0.5rem;
+      background: #fff;
+  }
+</style>
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+</ul>
+{% endif %}
+<div class="card text-center emp-profile">
+  <div class="card-body">
+    <a href="{% url 'main:add_article' %}" class="btn btn-outline-success">Add Article</a>
+    <div class="row">
+        {% for article in page_obj %}
+        <div class="card ar_div" style="width: 18rem;">
+            <img src="{{article.image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title" style="font-family: 'Monda', sans-serif;">{{article.title}}</h5>
+              <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+              <a href="{% url 'main:details' article.id %}" class="btn btn-outline-primary">Read More</a>
+            </div>
+            <div class="container">
+              <a href="{% url 'main:edit_article' article.id %}" class="btn btn-outline-info">Edit</a>
+              <a href="{% url 'main:delete_article' article.id %}" class="btn btn-outline-danger">Delete</a>
+            </div>
+            <br>
+            
+          </div>
+        {% endfor %}
+
+    </div>
+  </div>
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1" aria-disabled="true">Previous</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+      </li>
+    {% endif %}
+    {% for x in paginator.page_range %}
+      <li class="page-item"><a class="page-link" href="?page={{x}}">{{x}}</a></li>
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    {% endif %}
+    </ul>
+  </nav>
+
+    
+
+      
+
+
+{% endblock %}

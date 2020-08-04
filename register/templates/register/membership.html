@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Membership{% endblock %}
+{% load static %}
+{% block main %}
+
+
+<div class="card text-center">
+    <div class="card-header">
+        <h3>😝Do want to be a member of this Website😝</h3>
+    </div>
+    <div class="card-body">
+      <h4>Do you have an account ? if you do : </h4>
+      <a href="{% url 'register:login_page' %}" class="btn btn-outline-secondary">Login 😋</a>
+      <h4>If you don't : </h4>
+      <a href="{% url 'register:create_account_page' %}" class="btn btn-outline-primary">Create an account 😋</a>
+
+    </div>
+  </div>
+{% endblock %}

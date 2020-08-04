@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}Edit Article{% endblock %}
+{% load static %}
+{% block main %}
+
+
+<div class="card text-center">
+    <div class="card-header">
+        <h3>😝Register😝</h3>
+    </div>
+    <div class="card-body">
+      <form action="" method="POST">
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="col">
+              {{form.first_name}}
+            </div>
+            <div class="col">
+                {{form.last_name}}
+            </div>
+          </div>
+          <br>
+          {{form.username.label}}: <br>
+          {{form.username}}
+          <br><br>
+          {{form.email.label}}
+          <br>
+          {{form.email}}
+          <br><br>
+          {{form.password1.label}}
+          <br>
+          {{form.password1}}
+          <br><br>
+          {{form.password2.label}}
+          <br>
+          {{form.password2}}
+          <br><br>
+          <button type="submit" class="btn btn-primary" >Register</button>
+          <br><br>
+
+
+          {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+          {% endif %}
+
+
+
+
+          {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-danger" role="alert">
+                  {{message}}
+                </div>
+                {% endfor %}
+            {% endif %}
+          <br>
+          Did you have already an accout ? What do you waiting for <a href="{% url 'register:login_page' %}">Login</a>
+      </form>
+
+    </div>
+  </div>
+{% endblock %}
+
+
